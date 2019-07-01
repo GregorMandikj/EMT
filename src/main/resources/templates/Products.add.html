@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new product</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/products/add}" th:object="${product}" method="post">
+    Name: <input type="text" th:field="*{name}" />
+    Description: <input type="text" th:field="*{description}" />
+    Picture link: <input type="text" th:field="*{picture_link}" />
+    Author: <select th:field="*{author.id}" class="form-control">
+    <option th:each="author : ${authorList}"
+            th:value="${author.id}"
+            th:text="${author.name}">
+    </option>
+</select>
+    Category: <select th:field="*{category.id}" class="form-control">
+    <option th:each="category : ${categoryList}"
+            th:value="${category.id}"
+            th:text="${category.name}">
+    </option>
+</select>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
