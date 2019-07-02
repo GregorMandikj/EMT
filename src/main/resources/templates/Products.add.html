@@ -10,6 +10,7 @@
     Name: <input type="text" th:field="*{name}" />
     Description: <input type="text" th:field="*{description}" />
     Picture link: <input type="text" th:field="*{picture_link}" />
+    Price: <input type="number" th:field="*{price}" />
     Author: <select th:field="*{author.id}" class="form-control">
     <option th:each="author : ${authorList}"
             th:value="${author.id}"

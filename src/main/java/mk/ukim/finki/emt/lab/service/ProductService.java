@@ -1,10 +1,12 @@
 package mk.ukim.finki.emt.lab.service;
 
+import mk.ukim.finki.emt.lab.exception.ResourceNotFoundException;
 import mk.ukim.finki.emt.lab.model.Product;
 import mk.ukim.finki.emt.lab.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Min;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,5 +33,11 @@ public class ProductService {
 
     public List<Product> findByCategoryAndAuthor(Long categoryId, Long authorId) {
         return productRepository.findByCategory_idAndAuthor_Id(categoryId, authorId);
+    }
+
+    public Product getProduct(long id) {
+        return productRepository
+                .findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
     }
 }
